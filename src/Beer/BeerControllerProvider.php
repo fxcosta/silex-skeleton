@@ -24,8 +24,8 @@ class BeerControllerProvider implements ControllerProviderInterface
         $controllers = $app['controllers_factory'];
 
         $controllers->get('/cerveja', [$this, "index"]);
-        $controllers->get('/test', function() use($app) {
-            return $app['beer.service']->hello();
+        $controllers->get('/test', function() {
+            return $this->app['beer.service']->hello();
         });
 
         return $controllers;
