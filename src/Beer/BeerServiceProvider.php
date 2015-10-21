@@ -1,11 +1,19 @@
 <?php
 namespace App\Beer;
 
+use Doctrine\ORM\EntityManager;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
 class BeerServiceProvider implements ServiceProviderInterface
 {
+    public $em;
+
+    public $service;
+
+    public function __construct()
+    {
+    }
 
     /**
      * Registers services on the given app.
@@ -15,7 +23,9 @@ class BeerServiceProvider implements ServiceProviderInterface
      */
     public function register(Application $app)
     {
-        // TODO: Implement register() method.
+        $app['beer.service'] = function() use($app) {
+            return new BeerService($app['orm.em']);
+        };
     }
 
     /**
@@ -28,5 +38,10 @@ class BeerServiceProvider implements ServiceProviderInterface
     public function boot(Application $app)
     {
         // TODO: Implement boot() method.
+    }
+
+    public function service()
+    {
+
     }
 }
