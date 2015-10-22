@@ -26,6 +26,10 @@ class BeerServiceProvider implements ServiceProviderInterface
         $app['beer.service'] = function() use($app) {
             return new BeerService($app['orm.em']);
         };
+
+        $app['beer.controller'] = $app->share(function() use($app) {
+            return new BeerController($app);
+        });
     }
 
     /**
@@ -38,10 +42,5 @@ class BeerServiceProvider implements ServiceProviderInterface
     public function boot(Application $app)
     {
         // TODO: Implement boot() method.
-    }
-
-    public function service()
-    {
-
     }
 }

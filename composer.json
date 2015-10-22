@@ -6,7 +6,8 @@
         "monolog/monolog": "*",
         "nesbot/Carbon": "~1.6",
         "phing/phing": ">=2.4.13",
-        "twig/twig": "^1.22"
+        "twig/twig": "^1.22",
+        "symfony/serializer": "^2.7"
     },
   "autoload": {
     "psr-4": {

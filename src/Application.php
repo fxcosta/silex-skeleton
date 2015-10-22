@@ -35,8 +35,9 @@ $app->register(new DoctrineOrmServiceProvider, array(
             // Using actual filesystem paths
             array(
                 "type" => "annotation",
-                "namespace" => "App\\Beer",
-                "path" => __DIR__."/src/Beer",
+                "namespace" => "App\\Beer\\",
+                'use_simple_annotation_reader' => false,
+                "path" => __DIR__."/src/Beer/",
             ),
         ),
     ),
@@ -45,6 +46,8 @@ $app->register(new DoctrineOrmServiceProvider, array(
 $app->get('/doctrine', function() use($app) {
    return $app['orm.em'];
 });
+
+$app->register(new Silex\Provider\SerializerServiceProvider());
 
 $app->register(new App\Beer\BeerServiceProvider());
 $app->mount('/beer', new App\Beer\BeerControllerProvider());

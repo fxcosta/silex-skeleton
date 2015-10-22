@@ -11,6 +11,13 @@ class BeerControllerProvider implements ControllerProviderInterface
 
     protected $app;
 
+    protected $controller;
+
+    public function __construct()
+    {
+//        $this->controller = new BeerController();
+    }
+
     /**
      * Returns routes to connect to the given application.
      *
@@ -24,6 +31,7 @@ class BeerControllerProvider implements ControllerProviderInterface
         $controllers = $app['controllers_factory'];
 
         $controllers->get('/cerveja', [$this, "index"]);
+        $controllers->get('/inject', [$this->app['beer.controller'], "inject"]);
         $controllers->get('/test', function() {
             return $this->app['beer.service']->hello();
         });
